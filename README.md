@@ -50,5 +50,6 @@ Transaction Service
 PostgreSQL (storage)
      ↓
 Kafka (event publication)
+```
 
-This service is currently under development.
+This service is currently under development
