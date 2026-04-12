@@ -9,7 +9,6 @@ import com.example.replikant.transactionService.dto.TransactionRequest;
 import com.example.replikant.transactionService.dto.TransactionResponse;
 import com.example.replikant.transactionService.event.TransactionEvent;
 import com.example.replikant.transactionService.service.TransactionService;
-import com.example.replikant.transactionService.kafka.TransactionProducer;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,7 +18,6 @@ import lombok.RequiredArgsConstructor;
 public class TransactionController {
 
     private final TransactionService service;
-    private final TransactionProducer producer;
 
     @PostMapping
     public ResponseEntity<TransactionResponse> create(@RequestBody TransactionRequest request) {
@@ -32,7 +30,6 @@ public class TransactionController {
         event.setAmount(response.getAmount());
         event.setCountry(response.getCountry());
 
-        producer.send(event);
 
         return ResponseEntity.status(201).body(response);
     }
